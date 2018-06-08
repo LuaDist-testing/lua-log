@@ -1,16 +1,16 @@
 -- This file was automatically generated for the LuaDist project.
 
 package = "lua-log"
-version = "0.1.2-1"
+version = "0.1.3-1"
 -- LuaDist source
 source = {
-  tag = "0.1.2-1",
+  tag = "0.1.3-1",
   url = "git://github.com/LuaDist-testing/lua-log.git"
 }
 -- Original source
 -- source = {
---   url = "https://github.com/moteus/lua-log/archive/v0.1.2.zip",
---   dir = "lua-log-0.1.2",
+--   url = "https://github.com/moteus/lua-log/archive/v0.1.3.zip",
+--   dir = "lua-log-0.1.3",
 -- }
 
 description = {
@@ -80,3 +80,5 @@ build = {
     ["log.writer.stdout"           ] = "lua/log/writer/stdout.lua",
   }
 }
+
+
