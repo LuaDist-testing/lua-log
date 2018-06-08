@@ -8,7 +8,7 @@ local log_packer = require "log.logformat.proxy.pack"
 
 local _M = {}
 
-function _M.run(writer, logformat, ctx, stype, address, addr_sync)
+function _M.run(writer, final, logformat, ctx, stype, address, addr_sync)
   -- print(writer, logformat, ctx, stype, address, addr_sync)
   local stypes = {
     SUB  = zmq.SUB;
@@ -37,9 +37,11 @@ function _M.run(writer, logformat, ctx, stype, address, addr_sync)
       if msg and lvl and now then writer(logformat, msg, lvl, now) end
     else
       if zerrcode(err) == ETERM then break end
-      io.stderr:write('log.writer.net.zmq.server: ', tostring(err), zstrerror(err))
+      io.stderr:write('log.writer.net.zmq.server: ', tostring(err), zstrerror(err), '\n')
     end
   end
+
+  if final then final() end
 
   skt:close()
 end

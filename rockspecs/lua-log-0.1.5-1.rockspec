@@ -1,17 +1,9 @@
--- This file was automatically generated for the LuaDist project.
-
 package = "lua-log"
-version = "0.1.4-1"
--- LuaDist source
+version = "0.1.5-1"
 source = {
-  tag = "0.1.4-1",
-  url = "git://github.com/LuaDist-testing/lua-log.git"
+  url = "https://github.com/moteus/lua-log/archive/v0.1.5.zip",
+  dir = "lua-log-0.1.5",
 }
--- Original source
--- source = {
---   url = "https://github.com/moteus/lua-log/archive/v0.1.4.zip",
---   dir = "lua-log-0.1.4",
--- }
 
 description = {
   summary = "Asynchronous logging library",
@@ -26,7 +18,7 @@ dependencies = {
   "date >= 2.0",
   -- "llthread >= 1.2",
   -- "luasocket >= 2.0.1",
-  -- "lzmq >= 0.1.0",
+  -- "lzmq >= 0.4.2",
   -- "sendmail >= 0.1.0",
   -- "lanes >= 3.5",
   -- "ansicolors >= 1.0",
@@ -80,5 +72,6 @@ build = {
     ["log.writer.stdout"           ] = "lua/log/writer/stdout.lua",
   }
 }
+
 
 

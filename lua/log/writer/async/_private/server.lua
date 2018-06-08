@@ -43,12 +43,13 @@ until true end
 
 local Worker = [=[
 (function(server, maker, logformat, ...)
+  local Log = require "log"
   local logformat = require(logformat).new()
 
   local loadstring = loadstring or load
   local writer = assert(loadstring(maker))()
 
-  require(server).run(writer, logformat, ...)
+  require(server).run(writer, Log.close, logformat, ...)
 end)(...)
 ]=]
 
@@ -58,7 +59,7 @@ local function run_server(server, maker, logformat, ...)
   assert(type(logformat) == 'string')
 
   local child_thread = assert(runstring(Worker, server, maker, logformat, ...))
-  child_thread:start(true)
+  child_thread:start(true, true)
   sleep(500)
   return
 end
@@ -73,7 +74,7 @@ local function run_zserver(server, maker, logformat, ctx, ...)
   assert(Z.is_ctx(ctx))
 
   local zthreads  = assert(Z.threads)
-  local child_thread = assert(zthreads.runstring(ctx, Worker, server, maker, logformat, ...))
+  local child_thread = assert((zthreads.run or zthreads.runstring)(ctx, Worker, server, maker, logformat, ...))
   child_thread:start(true)
   return
 end

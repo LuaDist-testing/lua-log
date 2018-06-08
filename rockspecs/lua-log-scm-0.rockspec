@@ -10,7 +10,7 @@ description = {
   detailed = [[
   ]],
   homepage = "https://github.com/moteus/lua-log",
-  -- license = ""
+  license  = "MIT/X11",
 }
 
 dependencies = {
@@ -18,7 +18,7 @@ dependencies = {
   "date >= 2.0",
   -- "llthread >= 1.2",
   -- "luasocket >= 2.0.1",
-  -- "lzmq >= 0.1.0",
+  -- "lzmq >= 0.4.2",
   -- "sendmail >= 0.1.0",
   -- "lanes >= 3.5",
   -- "ansicolors >= 1.0",
