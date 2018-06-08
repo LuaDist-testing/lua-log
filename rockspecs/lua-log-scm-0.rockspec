@@ -14,8 +14,9 @@ description = {
 }
 
 dependencies = {
-  "lua >= 5.1",
+  "lua >= 5.1, < 5.4",
   "date >= 2.0",
+  -- "lpeg >= 0.10.0",
   -- "llthread >= 1.2",
   -- "luasocket >= 2.0.1",
   -- "lzmq >= 0.4.2",
@@ -29,11 +30,14 @@ build = {
   copy_directories = {
     "examples",
     "utils",
+    "doc",
   },
   modules = {
     ["log"                         ] = "lua/log.lua",
     ["log.formatter.concat"        ] = "lua/log/formatter/concat.lua",
+    ["log.formatter.default"       ] = "lua/log/formatter/default.lua",
     ["log.formatter.format"        ] = "lua/log/formatter/format.lua",
+    ["log.formatter.pformat"       ] = "lua/log/formatter/pformat.lua",
     ["log.formatter.mix"           ] = "lua/log/formatter/mix.lua",
     ["log.logformat.default"       ] = "lua/log/logformat/default.lua",
     ["log.logformat.proxy"         ] = "lua/log/logformat/proxy.lua",
@@ -67,10 +71,8 @@ build = {
     ["log.writer.net.zmq.pub"      ] = "lua/log/writer/net/zmq/pub.lua",
     ["log.writer.net.zmq.push"     ] = "lua/log/writer/net/zmq/push.lua",
     ["log.writer.net.zmq.srv.pub"  ] = "lua/log/writer/net/zmq/srv/pub.lua",
+    ["log.writer.prefix"           ] = "lua/log/writer/prefix.lua",
     ["log.writer.stderr"           ] = "lua/log/writer/stderr.lua",
     ["log.writer.stdout"           ] = "lua/log/writer/stdout.lua",
   }
 }
-
-
-

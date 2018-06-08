@@ -130,7 +130,7 @@ end
 
 function test_async_udp()
   local ok, status, msg = exec_code[[
-    local writer = require "log.writer.async.udp".new('127.0.0.1', 5555,
+    local writer = require "log.writer.async.udp".new('127.0.0.1', '5555',
       "return require 'log.writer.stdout'.new()"
     )
 
@@ -264,6 +264,77 @@ function test_formatter_mix()
   assert_match(DATE_PAT .. " %[EMERG%] can not allocate memory",       msg)
   assert_match(DATE_PAT .. " %[ALERT%] can not allocate memory",       msg)
   assert_match(DATE_PAT .. " %[FATAL%] can not allocate memory",       msg)
+end
+
+end
+
+local _ENV = TEST_CASE'protected formatter' do
+
+function test_do_not_raise_error_nil_argument()
+  local formatter = require "log.formatter.pformat".new()
+
+  local msg
+  assert_pass(function() msg = formatter("%d", nil) end)
+  assert_string(msg)
+
+  local expected = tostring(nil)
+  assert_equal(expected, string.sub(msg,1, #expected))
+
+  assert_match('Error formatting log message', msg)
+end
+
+function test_do_not_raise_error_unknown_format()
+  local formatter = require "log.formatter.pformat".new()
+
+  local msg
+  assert_pass(function() msg = formatter("%t", 10) end)
+  assert_string(msg)
+
+  local expected = "%t"
+  assert_equal(expected, string.sub(msg,1, #expected))
+
+  assert_match('Error formatting log message', msg)
+end
+
+function test_do_not_raise_error_and_no_warning_nil_argument()
+  local formatter = require "log.formatter.pformat".new(nil, true)
+
+  local msg
+  assert_pass(function() msg = formatter("%t", nil) end)
+  assert_string(msg)
+
+  local expected = '%t'
+  assert_equal(expected, msg)
+end
+
+function test_do_not_raise_error_and_no_warning_unknown_format()
+  local formatter = require "log.formatter.pformat".new(nil, true)
+
+  local msg
+  assert_pass(function() msg = formatter("%t", 10) end)
+  assert_string(msg)
+
+  local expected = '%t'
+  assert_equal(expected, msg)
+end
+
+function test_do_not_raise_error_nil_argument_2()
+  local formatter = require "log.formatter.pformat".new(true)
+
+  local msg
+  assert_pass(function() msg = formatter("%d", nil) end)
+  assert_string(msg)
+
+  local expected = tostring(nil)
+  assert_equal(expected, string.sub(msg,1, #expected))
+
+  assert_match('Error formatting log message', msg)
+end
+
+function test_raise_error_unknown_format()
+  local formatter = require "log.formatter.pformat".new(true)
+
+  local msg = assert_error(function() msg = formatter("%t", 10) end)
 end
 
 end

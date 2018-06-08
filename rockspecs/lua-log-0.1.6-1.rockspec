@@ -1,17 +1,9 @@
--- This file was automatically generated for the LuaDist project.
-
 package = "lua-log"
-version = "0.1.5-1"
--- LuaDist source
+version = "0.1.6-1"
 source = {
-  tag = "0.1.5-1",
-  url = "git://github.com/LuaDist-testing/lua-log.git"
+  url = "https://github.com/moteus/lua-log/archive/v0.1.6.zip",
+  dir = "lua-log-0.1.6",
 }
--- Original source
--- source = {
---   url = "https://github.com/moteus/lua-log/archive/v0.1.5.zip",
---   dir = "lua-log-0.1.5",
--- }
 
 description = {
   summary = "Asynchronous logging library",
@@ -22,8 +14,9 @@ description = {
 }
 
 dependencies = {
-  "lua >= 5.1",
+  "lua >= 5.1, < 5.4",
   "date >= 2.0",
+  -- "lpeg >= 0.10.0",
   -- "llthread >= 1.2",
   -- "luasocket >= 2.0.1",
   -- "lzmq >= 0.4.2",
@@ -42,7 +35,9 @@ build = {
   modules = {
     ["log"                         ] = "lua/log.lua",
     ["log.formatter.concat"        ] = "lua/log/formatter/concat.lua",
+    ["log.formatter.default"       ] = "lua/log/formatter/default.lua",
     ["log.formatter.format"        ] = "lua/log/formatter/format.lua",
+    ["log.formatter.pformat"       ] = "lua/log/formatter/pformat.lua",
     ["log.formatter.mix"           ] = "lua/log/formatter/mix.lua",
     ["log.logformat.default"       ] = "lua/log/logformat/default.lua",
     ["log.logformat.proxy"         ] = "lua/log/logformat/proxy.lua",
@@ -76,9 +71,8 @@ build = {
     ["log.writer.net.zmq.pub"      ] = "lua/log/writer/net/zmq/pub.lua",
     ["log.writer.net.zmq.push"     ] = "lua/log/writer/net/zmq/push.lua",
     ["log.writer.net.zmq.srv.pub"  ] = "lua/log/writer/net/zmq/srv/pub.lua",
+    ["log.writer.prefix"           ] = "lua/log/writer/prefix.lua",
     ["log.writer.stderr"           ] = "lua/log/writer/stderr.lua",
     ["log.writer.stdout"           ] = "lua/log/writer/stdout.lua",
   }
 }
-
-
